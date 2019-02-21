@@ -51,7 +51,7 @@ function check(){
 			 <%-- 提示信息--%>
 			 <span id="message">${msg}</span>
 		</font>
-		<%-- 提交后的位置：/WEB-INF/jsp/customer.jsp--%>
+		<%-- 提交后的位置：/WEB-INF/jsp/player.jsp--%>
 		<form action="${pageContext.request.contextPath }/login.action" 
 			                       method="post" onsubmit="return check()">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.core.dao.PlayerDao">
+    <sql id="selectPlayerListWhere" >
+        <where>
+            <if test="player_name != null" >
+                player_name like "%"#{player_name}"%"
+            </if>
+            <if test="player_position != null" >
+                and player_position = #{player_position}
+            </if>
+            <if test="player_team != null" >
+                and player_team #{player_team}
+            </if>
+            <if test="player_level != null">
+                and player_level = #{player_level}
+            </if>
+        </where>
+    </sql>
+    <select id="selectPlayerList" parameterType="player" resultType="player">
+        SELECT player_id,
+        player_name,
+        b.dict_item_name player_position,
+        e.dict_item_name player_team,
+        d.dict_item_name player_level,
+        player_salary,
+        player_draft
+        FROM player a
+        LEFT JOIN (
+        SELECT dict_id,
+        dict_item_name
+        FROM base_dict
+        WHERE dict_type_code = '001'
+        )b ON a.player_position = b.dict_id
+        LEFT JOIN (
+        SELECT dict_id,
+        dict_item_name
+        FROM base_dict
+        WHERE dict_type_code = '002'
+        )e ON a.player_team = e.dict_id
+        LEFT JOIN (
+        SELECT dict_id,
+        dict_item_name
+        FROM base_dict
+        WHERE dict_type_code = '003'
+        )d ON a.player_level = d.dict_id
+        <include refid="selectPlayerListWhere" />
+        <if test="start !=null and rows != null">
+            limit #{start},#{rows}
+        </if>
+    </select>
+    <select id="selectPlayerListCount" parameterType="player" resultType="Integer">
+        select count(*) from player
+        <include refid="selectPlayerListWhere" />
+    </select>
+
+    <insert id="createPlayer" parameterType="player">
+        insert into player(
+        player_name,
+        player_position,
+        player_team,
+        player_level,
+        player_salary,
+        player_draft
+        )
+        value (#{player_name},
+        #{player_position},
+        #{player_team},
+        #{player_level},
+        #{player_salary},
+        #{player_draft}
+        )
+
+    </insert>
+
+    <select id="getPlayerById" parameterType="Integer" resultType="player">
+        select * from  player where player_id = #{id}
+    </select>
+
+    <update id="updatePlayer" parameterType="player">
+        update player
+        <set>
+            <if test="player_name != null" >
+                player_name = #{player_name},
+            </if>
+            <if test="player_position != null" >
+                player_position = #{player_position},
+            </if>
+            <if test="player_team != null" >
+                player_team = #{player_team},
+            </if>
+            <if test="player_level != null">
+                player_level = #{player_level},
+            </if>
+            <if test="player_salary != null">
+                player_salary = #{player_salary},
+            </if>
+            <if test="player_draft != null">
+                player_draft = #{player_draft}
+            </if>
+        </set>
+        where player_id=#{player_id}
+    </update>
+    <delete id="deletePlayer" parameterType="Integer">
+        delete from player where player_id=#{id}
+    </delete>
+</mapper>

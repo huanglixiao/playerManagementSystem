@@ -27,15 +27,15 @@ public class UserController {
         User user = userService.findUser(usercode,password);
         if (user != null){
             session.setAttribute("USER_SESSION",user);
-            return "customer";
+            return "player";
         }
         model.addAttribute("msg","帐号或密码错误，请重新输入!");
         return "login";
     }
 
-    @RequestMapping(value = "/toCustomer.action")
-    public String toCustomer() {
-        return "customer";
+    @RequestMapping(value = "/toPlayer.action")
+    public String toPlayer() {
+        return "player";
     }
 
     /**
