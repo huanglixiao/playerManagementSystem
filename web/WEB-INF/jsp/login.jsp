@@ -7,7 +7,7 @@
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	   type=text/css rel=stylesheet>
-<link href="${pageContext.request.contextPath}/css/boot-crm.css"
+<link href="${pageContext.request.contextPath}/css/pms.css"
 	   type=text/css rel=stylesheet>
 <script src=
        "${pageContext.request.contextPath}/js/jquery-1.11.3.min.js">
@@ -26,8 +26,7 @@ function check(){
 }
 </script>
 </head>
-<body leftMargin=0 topMargin=0 marginwidth="0" marginheight="0"
-	background="${pageContext.request.contextPath}/images/rightbg.jpg">
+<body leftMargin=0 topMargin=0 marginwidth="0" marginheight="0">
 <div ALIGN="center">
 <table border="0" width="1140px" cellspacing="0" cellpadding="0"
                                                            id="table1">
@@ -36,22 +35,22 @@ function check(){
 		<td></td>
 	</tr>
 	<tr>
-   <td background="${pageContext.request.contextPath}/images/rights.jpg"
-		width="740" height="412">
+   <td background="${pageContext.request.contextPath}/images/logo.jpg"
+		width="700" height="700">
    </td>
    <td class="login_msg" width="400" align="center">
 	 <!-- margin:0px auto; 控制当前标签居中 -->
 	 <fieldset style="width: auto; margin: 0px auto;">
 		  <legend>
 		     <font style="font-size:15px" face="宋体">
-		          欢迎使用BOOT客户管理系统
+		          欢迎使用RUSS球员管理系统
 		     </font>
 		  </legend> 
 		<font color="red">
 			 <%-- 提示信息--%>
 			 <span id="message">${msg}</span>
 		</font>
-		<%-- 提交后的位置：/WEB-INF/jsp/player.jsp--%>
+		<%-- 提交后的场上位置：/WEB-INF/jsp/player.jsp--%>
 		<form action="${pageContext.request.contextPath }/login.action" 
 			                       method="post" onsubmit="return check()">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />

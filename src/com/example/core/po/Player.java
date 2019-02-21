@@ -6,8 +6,8 @@ public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer player_id; // 球员编号
     private String player_name; // 球员名字
-    private String player_position; // 球员位置
-    private String player_team; // 球员球队
+    private String player_position; // 球员场上位置
+    private String player_team; // 球员所属球队
     private String player_level; // 球员级别
     private String player_salary; // 球员合同
     private String player_draft; // 选秀
